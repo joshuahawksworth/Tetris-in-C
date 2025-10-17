@@ -107,14 +107,14 @@ void init_game(Game *game) {
 }
 
 void draw_board(Game *game) {
-    system("clear || cls");
+    system("cls");
     printf("TETRIS - Score: %d\n", game->score);
-    printf("┌");
-    for (int i = 0; i < BOARD_WIDTH; i++) printf("──");
-    printf("┐\n");
+    printf("+");
+    for (int i = 0; i < BOARD_WIDTH; i++) printf("--");
+    printf("+\n");
     
     for (int i = 0; i < BOARD_HEIGHT; i++) {
-        printf("│");
+        printf("|");
         for (int j = 0; j < BOARD_WIDTH; j++) {
             bool is_current = false;
             for (int y = 0; y < 4; y++) {
@@ -127,19 +127,19 @@ void draw_board(Game *game) {
                 }
             }
             if (is_current) {
-                printf("██");
+                printf("[]");
             } else if (game->board[i][j]) {
-                printf("▓▓");
+                printf("##");
             } else {
                 printf("  ");
             }
         }
-        printf("│\n");
+        printf("|\n");
     }
     
-    printf("└");
-    for (int i = 0; i < BOARD_WIDTH; i++) printf("──");
-    printf("┘\n");
+    printf("+");
+    for (int i = 0; i < BOARD_WIDTH; i++) printf("--");
+    printf("+\n");
     printf("Controls: A/D - Move, W - Rotate, S - Drop, Q - Quit\n");
 }
 
@@ -297,9 +297,9 @@ int main() {
         draw_board(&game);
         
 #ifdef _WIN32
-        Sleep(50);
+        Sleep(100);
 #else
-        usleep(50000);
+        usleep(100000);
 #endif
     }
     
